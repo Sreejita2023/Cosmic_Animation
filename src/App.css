@@ -1,38 +1,225 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main {
+  width: 100vw;
+  height: 150vh;
+  overflow-x: hidden;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.body{
+  overflow-x: hidden;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.feature {
+  position: absolute;
+  overflow-y: hidden;
+  top: 20px;
+  height: 100%;
   display: flex;
+  padding-top: 120px;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  width: 100%;
+  z-index: 10;
+}
+.text {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  top:10px ;
+  background-color: black;
   color: white;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  z-index: 10;
+}
+ .circle {
+  width: 10px;
+  height: 10px;
+  z-index: 20;
 }
 
-.App-link {
-  color: #61dafb;
+
+
+
+
+
+
+
+
+
+.orbit {
+  --size: 8rem;
+  --speed: 10s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.orbit ul {
+  display: grid;
+  place-items: center;
+  width: var(--size);
+  height: var(--size);
+  position: relative;
+  list-style: none;
+  transform-origin: center;
+  animation: orbit var(--speed) linear infinite;
+}
+
+
+
+.orbit li {
+  background:white;
+  position: absolute;
+  padding: 2rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  font-weight: 500;
+  color: var(--white-light);
+  text-align: center;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+.orbit li:hover {
+  --throb-play-state: paused;
+}
+
+.orbit li > * {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  position: absolute;
+  animation: orbit 10s linear reverse infinite,
+    throb 1s ease-in-out infinite alternate;
+  animation-play-state: var(--orbit-play-state, running),
+    var(--throb-play-state, running);
+}
+
+
+.motion{
+  opacity: 0;
+  animation: moveToCenter 6s linear;
+  
+}
+
+
+/* Manually adding the nth-child styles without SCSS loops */
+
+.initial:nth-child(1) {
+   background: lightblue;
+  
+    transform: translate(15rem, 0rem);
+}
+
+.initial:nth-child(2) {
+  background: lightgreen;
+
+    transform: translate(10rem, 10rem);
+}
+.initial:nth-child(3) {
+  background: lightpink;
+    transform: translate(0, 15rem);
+}
+
+.initial:nth-child(4) {
+    background: lightcoral;
+
+    transform: translate(-10rem, 10rem);
+}
+
+.initial:nth-child(5) {
+   background: yellow;
+    transform: translate(-15rem, 0rem);
+}
+
+.initial:nth-child(6) {
+   background: lightseagreen;
+    transform: translate(-10rem, -10rem);
+}
+
+.initial:nth-child(7) {
+  background: lightskyblue;
+  transform: translate(0, -15rem);
+}
+
+.initial:nth-child(8) {
+  background-color: rgb(249, 225, 181);
+  transform: translate(10rem, -10rem);
+}
+/* Keyframes */
+
+.motion:nth-child(1) {
+  background: lightblue;
+ 
+   transform: translate(15rem, 0rem);
+}
+
+.motion:nth-child(2) {
+ background: lightgreen;
+
+   transform: translate(10rem, 10rem);
+}
+.motion:nth-child(3) {
+ background: lightpink;
+   transform: translate(0, 15rem);
+}
+
+.motion:nth-child(4) {
+   background: lightcoral;
+
+   transform: translate(-10rem, 10rem);
+}
+
+.motion:nth-child(5) {
+  background: yellow;
+   transform: translate(-15rem, 0rem);
+}
+
+.motion:nth-child(6) {
+  background: lightseagreen;
+   transform: translate(-10rem, -10rem);
+}
+
+.motion:nth-child(7) {
+ background: lightskyblue;
+ transform: translate(0, -15rem);
+}
+
+.motion:nth-child(8) {
+ background-color: rgb(249, 225, 181);
+ transform: translate(10rem, -10rem);
+}
+@keyframes orbit {
+  100% {
+    rotate: 1turn;
   }
 }
+
+
+@keyframes throb {
+  100% {
+    scale: 1.05;
+  }
+}
+
+@keyframes moveToCenter {
+  0% {
+    
+    scale: 1;
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0rem, 0rem);
+    rotate: 2turn;
+    scale: 0.4;
+    opacity: 0;
+  }
+} 
